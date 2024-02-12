@@ -8,4 +8,10 @@ import { ProductComponent } from '../../components/product/product.component';
   templateUrl: './list.component.html',
   styleUrl: './list.component.css',
 })
-export class ListComponent {}
+export class ListComponent {
+  // metodo que recibe el evento del hijo
+  fromChild(e: string) {
+    console.log('en el componente padre');
+    console.log(e);
+  }
+}

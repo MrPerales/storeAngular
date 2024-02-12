@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-product',
@@ -11,5 +11,14 @@ export class ProductComponent {
   @Input({ required: true }) img: string = '';
   @Input({ required: true }) price: number = 0;
   @Input({ required: true }) title: string = '';
-  // img = `https://picsum.photos/640/640?r=` + Math.random();
+
+  @Output() addToCart = new EventEmitter();
+
+  addToCartHandler() {
+    // console.log('click from child');
+    // comunicando info al padre
+    this.addToCart.emit(
+      'Este es un mensaje desde el hijo al padre ' + this.title
+    );
+  }
 }

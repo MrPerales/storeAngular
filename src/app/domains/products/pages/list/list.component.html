@@ -1,23 +1,28 @@
 <p>list works!</p>
+<!--  -->
 <div class="grid grid-cols-3">
   <app-product
     [img]="'https://picsum.photos/640/640?r=01'"
     [title]="'producto 1'"
     [price]="20"
+    (addToCart)="fromChild($event)"
   />
   <app-product
     [img]="'https://picsum.photos/640/640?r=02'"
     [title]="'producto 2'"
     [price]="10"
+    (addToCart)="fromChild($event)"
   />
   <app-product
     [img]="'https://picsum.photos/640/640?r=03'"
     [title]="'producto 3'"
     [price]="10"
+    (addToCart)="fromChild($event)"
   />
   <app-product
     [img]="'https://picsum.photos/640/640?r=04'"
     [title]="'producto 4'"
     [price]="1000"
+    (addToCart)="fromChild($event)"
   />
 </div>
