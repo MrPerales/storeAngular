@@ -1,0 +1,16 @@
+<p>about works!</p>
+
+<div>
+  <input type="number" [value]="duration()" (change)="changeDuration($event)" />
+</div>
+<div>
+  <input type="text" [value]="message()" (change)="changeMessage($event)" />
+</div>
+
+<p>
+  <!-- para evento ngOnDestroy -->
+  @if(duration()>0){
+
+  <app-counter [duration]="duration()" [message]="message()" />
+  }
+</p>
