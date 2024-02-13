@@ -1,4 +1,4 @@
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, Input, SimpleChanges, signal } from '@angular/core';
 
 @Component({
   selector: 'app-counter',
@@ -10,6 +10,8 @@ import { Component, Input, SimpleChanges } from '@angular/core';
 export class CounterComponent {
   @Input({ required: true }) duration = 0;
   @Input({ required: true }) message = '';
+  counter = signal(0);
+  counterRef: number | undefined;
 
   constructor() {
     // no async
@@ -36,6 +38,11 @@ export class CounterComponent {
     console.log('-'.repeat(10));
     console.log('duration =>', this.duration);
     console.log('message =>', this.message);
+    // setInterval
+    this.counterRef = window.setInterval(() => {
+      this.counter.update((prevState) => prevState + 1);
+      console.log('setInterval');
+    }, 1000);
   }
   ngAfterViewInit() {
     // after render
@@ -46,6 +53,8 @@ export class CounterComponent {
   ngOnDestroy() {
     console.log('ngOnDestroy');
     console.log('-'.repeat(10));
+    // interval stop ya que no se detiene aunque sea destruido el componente
+    clearInterval(this.counterRef);
   }
 
   doSomething() {
