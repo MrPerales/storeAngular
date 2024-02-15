@@ -1,16 +1,18 @@
 <p>about works!</p>
 
-<div>
-  <input type="number" [value]="duration()" (change)="changeDuration($event)" />
+<div class="px-10">
+  <h1 class="text-lg font-bold">About</h1>
+  <p class="text-sm">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit,
+    doloremque. Laudantium recusandae ipsam dolores omnis ratione pariatur
+    quaerat quasi, voluptatem blanditiis amet mollitia sed totam explicabo
+    ducimus nesciunt voluptas eligendi.
+  </p>
+  <p class="text-sm">
+    numero de visitas :
+    <app-counter [duration]="duration()" [message]="message()" />
+  </p>
+  <div>
+    <app-wave-audio urlAudio="assets/audio.mp3" />
+  </div>
 </div>
-<div>
-  <input type="text" [value]="message()" (change)="changeMessage($event)" />
-</div>
-
-<p>
-  <!-- para evento ngOnDestroy -->
-  @if(duration()>0){
-
-  <app-counter [duration]="duration()" [message]="message()" />
-  }
-</p>
