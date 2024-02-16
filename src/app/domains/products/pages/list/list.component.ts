@@ -12,6 +12,7 @@ import { HeaderComponent } from '../../../shared/components/header/header.compon
 })
 export class ListComponent {
   productList = signal<Product[]>([]);
+  cart = signal<Product[]>([]);
   constructor() {
     const initalProducts: Product[] = [
       {
@@ -24,35 +25,35 @@ export class ListComponent {
       {
         id: Date.now(),
         title: 'producto 2',
-        price: 100,
+        price: 10,
         image: 'https://picsum.photos/640/640?r=02',
         creationAt: new Date().toISOString(),
       },
       {
         id: Date.now(),
         title: 'producto 3',
-        price: 100,
+        price: 20,
         image: 'https://picsum.photos/640/640?r=03',
         creationAt: new Date().toISOString(),
       },
       {
         id: Date.now(),
         title: 'producto 1',
-        price: 100,
+        price: 50,
         image: 'https://picsum.photos/640/640?r=01',
         creationAt: new Date().toISOString(),
       },
       {
         id: Date.now(),
         title: 'producto 2',
-        price: 100,
+        price: 70,
         image: 'https://picsum.photos/640/640?r=02',
         creationAt: new Date().toISOString(),
       },
       {
         id: Date.now(),
         title: 'producto 3',
-        price: 100,
+        price: 12,
         image: 'https://picsum.photos/640/640?r=03',
         creationAt: new Date().toISOString(),
       },
@@ -63,5 +64,8 @@ export class ListComponent {
   fromChild(e: string) {
     console.log('en el componente padre');
     console.log(e);
+  }
+  addToCart(product: Product) {
+    this.cart.update((prevState) => [...prevState, product]);
   }
 }
