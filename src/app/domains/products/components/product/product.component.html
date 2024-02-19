@@ -13,7 +13,7 @@
       {{ product.price | currency : "$" }}
     </p>
     <p class="text-sm font-medium text-gray-400">
-      {{ product.creationAt | date : "short" }}
+      {{ product.creationAt | time }}
     </p>
 
     <button
