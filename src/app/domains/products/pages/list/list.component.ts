@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, Input, SimpleChanges, inject, signal } from '@angular/core';
 import { ProductComponent } from '@products/components/product/product.component';
 import { Product } from '@shared/models/product.model';
 import { HeaderComponent } from '@shared/components/header/header.component';
@@ -21,14 +21,17 @@ export class ListComponent {
   private cartServices = inject(CartService);
   private productServices = inject(ProductService);
   private categoryServices = inject(CategoryService);
+  @Input() categoryId?: string;
 
   constructor() {}
 
   ngOnInit() {
-    this.getProducts();
     this.getCategories();
   }
-
+  ngOnChanges(changes: SimpleChanges) {
+    this.getProducts();
+    // console.log(this.categoryId);
+  }
   // metodo que recibe el evento del hijo
   fromChild(e: string) {
     console.log('en el componente padre');
@@ -38,7 +41,8 @@ export class ListComponent {
     this.cartServices.addToCart(product);
   }
   getProducts() {
-    this.productServices.getProduct().subscribe({
+    // con filtro de categoria
+    this.productServices.getProduct(this.categoryId).subscribe({
       next: (product) => {
         this.productList.set(product);
       },
