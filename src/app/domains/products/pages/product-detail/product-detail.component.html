@@ -16,11 +16,13 @@
           class="object-cover object-center rounded border-2 border-gray-200"
           [src]="image"
           (click)="changeCover(image)"
+          [class.border-red-900]="image === cover()"
         />
         }
       </div>
     </div>
   </div>
+
   <div class="mt-5 w-full">
     <h2 class="text-sm title-font text-gray-500 tracking-widest">
       {{ product()?.category?.name | uppercase }}
@@ -35,6 +37,7 @@
       {{ product()?.price | currency : "$" }}
     </p>
     <button
+      (click)="addToCart()"
       class="flex text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded"
     >
       Add To Cart
