@@ -4,6 +4,8 @@ import { Product } from '@shared/models/product.model';
 import { HeaderComponent } from '@shared/components/header/header.component';
 import { CartService } from '@shared/services/cart.service';
 import { ProductService } from '@shared/services/product.service';
+import { CategoryService } from '@shared/services/category.service';
+import { Category } from '@shared/models/category.model';
 
 @Component({
   selector: 'app-list',
@@ -14,20 +16,16 @@ import { ProductService } from '@shared/services/product.service';
 })
 export class ListComponent {
   productList = signal<Product[]>([]);
+  categories = signal<Category[]>([]);
   private cartServices = inject(CartService);
   private productServices = inject(ProductService);
+  private categoryServices = inject(CategoryService);
 
   constructor() {}
 
   ngOnInit() {
-    this.productServices.getProduct().subscribe({
-      next: (product) => {
-        this.productList.set(product);
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
+    this.getProducts();
+    this.getCategories();
   }
 
   // metodo que recibe el evento del hijo
@@ -37,5 +35,25 @@ export class ListComponent {
   }
   addToCart(product: Product) {
     this.cartServices.addToCart(product);
+  }
+  getProducts() {
+    this.productServices.getProduct().subscribe({
+      next: (product) => {
+        this.productList.set(product);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+  }
+  getCategories() {
+    this.categoryServices.getAllCategories().subscribe({
+      next: (data) => {
+        this.categories.set(data);
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
 }
