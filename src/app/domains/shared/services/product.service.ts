@@ -16,4 +16,10 @@ export class ProductService {
     );
     return products;
   }
+  getProductById(id: string) {
+    const product = this.http.get<Product>(
+      `https://api.escuelajs.co/api/v1/products/${id}`
+    );
+    return product;
+  }
 }
